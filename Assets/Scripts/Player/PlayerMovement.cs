@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator JumpRoutine()
     {
+        transform.rotation = directionPointer.transform.rotation;
         Jumped?.Invoke();
         float time = jumpDuration;
         while (time > 0)

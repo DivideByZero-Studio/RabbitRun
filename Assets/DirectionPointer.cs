@@ -8,6 +8,7 @@ public class DirectionPointer : MonoBehaviour
     [SerializeField] private float rotationAngle;
     
     private bool _canRotate = true;
+    private float _angleZ;
     private int _rotationDirection = 1;
 
     private void Start()
@@ -20,17 +21,21 @@ public class DirectionPointer : MonoBehaviour
     {
         if (_canRotate)
         {
-            float angleZ = transform.rotation.eulerAngles.z;
+            _angleZ = transform.localRotation.eulerAngles.z;
             float allowedAngle = rotationAngle / 2;
-            if ((angleZ > allowedAngle) && (angleZ < 360-allowedAngle))
+            if ((_angleZ > allowedAngle) && (_angleZ < 360 - allowedAngle))
+            {
                 _rotationDirection *= -1;
-            
+                transform.Rotate(0, 0, rotationSpeed * Time.deltaTime * _rotationDirection * 2);
+            }
+
             transform.Rotate(0, 0, rotationSpeed * Time.deltaTime * _rotationDirection);
         }
     }
 
     private void StopRotation()
     {
+        transform.Rotate(0, 0, -_angleZ);
         _canRotate = false;
     }
     

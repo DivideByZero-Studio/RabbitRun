@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 public class EnemyBehaviourIdle : IState
 {
     private EnemyMovement _movement;
@@ -16,6 +15,7 @@ public class EnemyBehaviourIdle : IState
 
     public void Exit()
     {
+        _movement.StopCoroutine(_movement.UpdatingTargetPosition());
     }
 
     public void Update()

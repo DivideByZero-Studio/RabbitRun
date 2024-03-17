@@ -9,6 +9,7 @@ public class DirectionPointer : MonoBehaviour
     
     private bool _canRotate = true;
     private float _angleZ;
+    private float _difAngle;
     private int _rotationDirection = 1;
 
     private void Start()
@@ -23,19 +24,45 @@ public class DirectionPointer : MonoBehaviour
         {
             _angleZ = transform.localRotation.eulerAngles.z;
             float allowedAngle = rotationAngle / 2;
-            if ((_angleZ > allowedAngle) && (_angleZ < 360 - allowedAngle))
-            {
-                _rotationDirection *= -1;
-                transform.Rotate(0, 0, rotationSpeed * Time.deltaTime * _rotationDirection * 2);
-            }
 
+            var maxAngle = (allowedAngle + _difAngle) % 360;
+            var minAngle = (360 - allowedAngle + _difAngle) % 360;
+
+            if (maxAngle < 180 && minAngle > 180)
+            {
+                if ((_angleZ <= 360 && _angleZ > minAngle) || (_angleZ >= 0 && _angleZ < maxAngle))
+                {
+                    
+                }
+                else
+                {
+                    ChangeRotationDirection();
+                }
+            }
+                
+            else if (_angleZ < minAngle || _angleZ > maxAngle)
+            {
+                ChangeRotationDirection();
+            }
+            
             transform.Rotate(0, 0, rotationSpeed * Time.deltaTime * _rotationDirection);
         }
     }
 
+    private void ChangeRotationDirection()
+    {
+        _rotationDirection *= -1;
+        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime * _rotationDirection * 2);
+    }
+
+    private void SetBoundsForRotation()
+    {
+        _difAngle = _angleZ;
+    }
+    
     private void StopRotation()
     {
-        transform.Rotate(0, 0, -_angleZ);
+        SetBoundsForRotation();
         _canRotate = false;
     }
     

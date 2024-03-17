@@ -7,15 +7,14 @@ public class EnemyStateMachine : MonoBehaviour
     private Dictionary<Type, IState> _behavioursMap;
     private IState _currentBehaviour;
 
-    //private IEnemyMovement _movement;
+    private EnemyMovement _movement;
 
     [SerializeField] private EnemyTriggerPlayer _detectionTrigger;
     [SerializeField] private EnemyTriggerPlayer _attackTrigger;
-    /*[SerializeField] private;*/
 
     private void Awake()
     {
-        //_movement = GetComponent<IEnemyMovement>();
+        _movement = GetComponent<EnemyMovement>();
     }
 
     private void Start()
@@ -28,8 +27,8 @@ public class EnemyStateMachine : MonoBehaviour
     private void InitBehaviours()
     {
         _behavioursMap = new Dictionary<Type, IState>();
-        _behavioursMap[typeof(EnemyBehaviourIdle)] = new EnemyBehaviourIdle();
-        _behavioursMap[typeof(EnemyBehaviourChasing)] = new EnemyBehaviourChasing();
+        _behavioursMap[typeof(EnemyBehaviourIdle)] = new EnemyBehaviourIdle(_movement);
+        _behavioursMap[typeof(EnemyBehaviourChasing)] = new EnemyBehaviourChasing(_movement);
         _behavioursMap[typeof(EnemyBehaviourAttack)] = new EnemyBehaviourAttack();
     }
 
@@ -79,20 +78,20 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void Subscribe()
     {
-        _detectionTrigger.OnDetectedPlayer += SetBehaviourChasing;
-        _detectionTrigger.OnUndetectedPlayer += SetBehaviourIdle;
-
         _attackTrigger.OnDetectedPlayer += SetBehaviourAttack;
         _attackTrigger.OnUndetectedPlayer += SetBehaviourChasing;
+
+        _detectionTrigger.OnDetectedPlayer += SetBehaviourChasing;
+        _detectionTrigger.OnUndetectedPlayer += SetBehaviourIdle;
     }
 
     private void Unsubcribe()
     {
-        _detectionTrigger.OnDetectedPlayer -= SetBehaviourChasing;
-        _detectionTrigger.OnUndetectedPlayer -= SetBehaviourIdle;
-
         _attackTrigger.OnDetectedPlayer -= SetBehaviourAttack;
         _attackTrigger.OnUndetectedPlayer -= SetBehaviourChasing;
+
+        _detectionTrigger.OnDetectedPlayer -= SetBehaviourChasing;
+        _detectionTrigger.OnUndetectedPlayer -= SetBehaviourIdle;
     }
 
     private void OnEnable()

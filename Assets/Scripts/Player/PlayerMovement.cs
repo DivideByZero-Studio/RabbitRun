@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
         float time = jumpDuration;
         while (time > 0)
         {
-            Debug.Log(_jumpDirection);
             transform.Translate(Time.deltaTime * jumpStepMultiplier * _jumpDirection);
             time -= Time.deltaTime;
             yield return null;

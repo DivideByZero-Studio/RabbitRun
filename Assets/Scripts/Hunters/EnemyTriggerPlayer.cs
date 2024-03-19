@@ -4,13 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class EnemyTriggerPlayer : MonoBehaviour
 {
-    public Action OnDetectedPlayer;
-    public Action OnUndetectedPlayer;
+    public Action OnDetection;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<PlayerMovement>(out var player))
         {
-            OnDetectedPlayer?.Invoke();
+            OnDetection?.Invoke();
         }
     }
 
@@ -18,7 +17,7 @@ public class EnemyTriggerPlayer : MonoBehaviour
     {
         if (collision.TryGetComponent<PlayerMovement>(out var player))
         {
-            OnUndetectedPlayer?.Invoke();
+            OnDetection?.Invoke();
         }
     }
 }

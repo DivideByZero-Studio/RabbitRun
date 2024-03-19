@@ -8,14 +8,15 @@ public class EnemyStateMachine : MonoBehaviour
     private IState _currentBehaviour;
 
     private EnemyMovement _movement;
-    private IAttackable _attacker;
 
-    [SerializeField] private EnemyTriggerPlayer _detectionTrigger;
-    [SerializeField] private EnemyTriggerPlayer _attackTrigger;
+    [Header("Distance to player module")]
+    [SerializeField] private EnemyDistanceToPlayer _enemyDistanceToPlayer;
+
+    [Space, Header("Attack module")]
+    [SerializeField] private MeleeEnemyAttack _enemyAttack;
 
     private void Awake()
     {
-        _attacker = GetComponent<IAttackable>();
         _movement = GetComponent<EnemyMovement>();
     }
 
@@ -31,7 +32,7 @@ public class EnemyStateMachine : MonoBehaviour
         _behavioursMap = new Dictionary<Type, IState>();
         _behavioursMap[typeof(EnemyBehaviourIdle)] = new EnemyBehaviourIdle(_movement);
         _behavioursMap[typeof(EnemyBehaviourChasing)] = new EnemyBehaviourChasing(_movement);
-        _behavioursMap[typeof(EnemyBehaviourAttack)] = new EnemyBehaviourAttack(_attacker);
+        _behavioursMap[typeof(EnemyBehaviourAttack)] = new EnemyBehaviourAttack(_enemyAttack);
     }
 
     private void SetBehaviour(IState newBehaviour)
@@ -80,20 +81,16 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void Subscribe()
     {
-        _attackTrigger.OnDetectedPlayer += SetBehaviourAttack;
-        _attackTrigger.OnUndetectedPlayer += SetBehaviourChasing;
-
-        _detectionTrigger.OnDetectedPlayer += SetBehaviourChasing;
-        _detectionTrigger.OnUndetectedPlayer += SetBehaviourIdle;
+        _enemyDistanceToPlayer.OnIdleDistance += SetBehaviourIdle;
+        _enemyDistanceToPlayer.OnChaseDistance += SetBehaviourChasing;
+        _enemyDistanceToPlayer.OnAttackDistance += SetBehaviourAttack;
     }
 
     private void Unsubcribe()
     {
-        _attackTrigger.OnDetectedPlayer -= SetBehaviourAttack;
-        _attackTrigger.OnUndetectedPlayer -= SetBehaviourChasing;
-
-        _detectionTrigger.OnDetectedPlayer -= SetBehaviourChasing;
-        _detectionTrigger.OnUndetectedPlayer -= SetBehaviourIdle;
+        _enemyDistanceToPlayer.OnIdleDistance -= SetBehaviourIdle;
+        _enemyDistanceToPlayer.OnChaseDistance -= SetBehaviourChasing;
+        _enemyDistanceToPlayer.OnAttackDistance -= SetBehaviourAttack;
     }
 
     private void OnEnable()

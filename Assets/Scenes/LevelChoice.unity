@@ -425,10 +425,10 @@ RectTransform:
   - {fileID: 1250321678}
   m_Father: {fileID: 1694004800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1300, y: -100}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchorMin: {x: 0.625, y: 0.31577754}
+  m_AnchorMax: {x: 0.728688, y: 0.5}
+  m_AnchoredPosition: {x: 0.5, y: -0.5}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &686521634
 MonoBehaviour:
@@ -755,10 +755,10 @@ RectTransform:
   - {fileID: 1986301066}
   m_Father: {fileID: 1694004800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: 150}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchorMin: {x: 0.037503574, y: 0.55}
+  m_AnchorMax: {x: 0.13800001, y: 0.7286627}
+  m_AnchoredPosition: {x: 6.5, y: -0.5}
+  m_SizeDelta: {x: 7, y: 7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1109905128
 MonoBehaviour:
@@ -803,7 +803,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1109905129}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1676599215}
+        m_TargetAssemblyTypeName: LevelMap, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level_1
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1109905129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,10 +1159,10 @@ RectTransform:
   - {fileID: 310138350}
   m_Father: {fileID: 1694004800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 550, y: 100}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchorMin: {x: 0.23441768, y: 0.5}
+  m_AnchorMax: {x: 0.3362924, y: 0.6842155}
+  m_AnchoredPosition: {x: 2, y: 0.5}
+  m_SizeDelta: {x: 4, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1636641025
 MonoBehaviour:
@@ -1246,6 +1258,7 @@ GameObject:
   - component: {fileID: 1676599213}
   - component: {fileID: 1676599212}
   - component: {fileID: 1676599211}
+  - component: {fileID: 1676599215}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1338,6 +1351,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1676599215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676599210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a142aa7a95b18d6955afdf27cb09ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 1109905128}
+  - {fileID: 1636641025}
+  - {fileID: 1806433178}
+  - {fileID: 686521634}
+  - {fileID: 1958467104}
 --- !u!1 &1694004799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,10 +1521,10 @@ RectTransform:
   - {fileID: 1091227266}
   m_Father: {fileID: 1694004800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 925, y: 50}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchorMin: {x: 0.4274988, y: 0.4592225}
+  m_AnchorMax: {x: 0.5296904, y: 0.637}
+  m_AnchoredPosition: {x: 6, y: -2}
+  m_SizeDelta: {x: 4, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1806433178
 MonoBehaviour:
@@ -1745,10 +1776,10 @@ RectTransform:
   - {fileID: 209501843}
   m_Father: {fileID: 1694004800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1675, y: -374}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchorMin: {x: 0.82131207, y: 0.06111244}
+  m_AnchorMax: {x: 0.9235209, y: 0.24455504}
+  m_AnchoredPosition: {x: 0, y: 1.000061}
+  m_SizeDelta: {x: 4, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1958467104
 MonoBehaviour:

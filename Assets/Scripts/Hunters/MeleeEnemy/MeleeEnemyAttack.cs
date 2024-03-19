@@ -71,8 +71,9 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Change Try to get class
-        if (collision.TryGetComponent<PlayerMovement>(out var player))
+        if (collision.TryGetComponent<PlayerHealth>(out var player))
         {
+            player.TakeDamage();
             Debug.Log("Attacked");
         }
     }

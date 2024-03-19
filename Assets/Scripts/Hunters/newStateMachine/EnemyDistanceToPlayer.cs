@@ -4,9 +4,9 @@ using UnityEngine;
 public class EnemyDistanceToPlayer : MonoBehaviour
 {
     //  Actions for switch behaviours
-    public Action OnIdleDistance;
-    public Action OnChaseDistance;
-    public Action OnAttackDistance;
+    public event Action OnIdleDistance;
+    public event Action OnChaseDistance;
+    public event Action OnAttackDistance;
 
     // Reorganize links
     [SerializeField] private Transform _playerTransform;

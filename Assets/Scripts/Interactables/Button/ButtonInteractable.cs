@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Interactable))]
-public class Button : MonoBehaviour
+public class ButtonInteractable : MonoBehaviour
 {
     private Interactable _interactable;
     public UnityEvent ButtonPressed;

@@ -5,6 +5,7 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
 {
     // Reorganize links!
     [SerializeField] private Transform _player;
+    [SerializeField] private Transform _enemyTransform;
 
     [Space, SerializeField] private float _attackTime;
     [SerializeField] private float _cooldownBTWAttacks;
@@ -13,29 +14,31 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
 
     private Vector3 _jumpPosition;
     private Vector3 _target;
-    private Transform _transform;
-
+    
     private bool _prepared;
 
     private float _jumpProgress = 0f;
+
+    private Coroutine _coroutine;
 
     private void Awake()
     {
         _attackZone = GetComponent<CircleCollider2D>();
         _attackZone.enabled = false;
-        _transform = transform;
     }
 
     public void AttackUpdate()
     {
         if (_prepared)
+        {
             _jumpProgress += Time.deltaTime * _attackTime;
-            _transform.position = Vector3.Lerp(_jumpPosition, _target, _jumpProgress);
+            _enemyTransform.position = Vector3.Lerp(_jumpPosition, _target, _jumpProgress);
+        }
     }
 
     public void StartAttack()
     {
-        StartCoroutine(Attacking());
+        _coroutine = StartCoroutine(Attacking());
     }
 
     private void GetTargetPosition()
@@ -49,7 +52,7 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
         {
             _jumpProgress = 0f;
             _prepared = true;
-            _jumpPosition = _transform.position;
+            _jumpPosition = _enemyTransform.position;
             GetTargetPosition();
             yield return new WaitForSeconds(_attackTime);
             _attackZone.enabled = true;
@@ -62,7 +65,7 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
 
     public void StopAttack()
     {
-        StopAllCoroutines();
+        StopCoroutine(_coroutine);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

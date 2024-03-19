@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EnemyBehaviourAttack : IState
 {
-    private MeleeEnemyAttack _attacker;
+    private IAttackable _attacker;
 
-    public EnemyBehaviourAttack(MeleeEnemyAttack attacker)
+    public EnemyBehaviourAttack(IAttackable attacker)
     {
         _attacker = attacker;
     }

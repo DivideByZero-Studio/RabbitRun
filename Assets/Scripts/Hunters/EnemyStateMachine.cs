@@ -13,7 +13,8 @@ public class EnemyStateMachine : MonoBehaviour
     [SerializeField] private EnemyDistanceToPlayer _enemyDistanceToPlayer;
 
     [Space, Header("Attack module")]
-    [SerializeField] private MeleeEnemyAttack _enemyAttack;
+    [SerializeField] private GameObject _enemyAttack;
+
 
     private void Awake()
     {
@@ -32,7 +33,7 @@ public class EnemyStateMachine : MonoBehaviour
         _behavioursMap = new Dictionary<Type, IState>();
         _behavioursMap[typeof(EnemyBehaviourIdle)] = new EnemyBehaviourIdle(_movement);
         _behavioursMap[typeof(EnemyBehaviourChasing)] = new EnemyBehaviourChasing(_movement);
-        _behavioursMap[typeof(EnemyBehaviourAttack)] = new EnemyBehaviourAttack(_enemyAttack);
+        _behavioursMap[typeof(EnemyBehaviourAttack)] = new EnemyBehaviourAttack(_enemyAttack.GetComponent<IAttackable>());
     }
 
     private void SetBehaviour(IState newBehaviour)

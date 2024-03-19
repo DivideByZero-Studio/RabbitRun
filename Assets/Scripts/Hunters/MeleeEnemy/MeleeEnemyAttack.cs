@@ -41,6 +41,11 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
         _coroutine = StartCoroutine(Attacking());
     }
 
+    public void StopAttack()
+    {
+        StopCoroutine(_coroutine);
+    }
+
     private void GetTargetPosition()
     {
         _target = _player.position;
@@ -63,18 +68,11 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
         }
     }
 
-    public void StopAttack()
-    {
-        StopCoroutine(_coroutine);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Change Try to get class
         if (collision.TryGetComponent<PlayerHealth>(out var player))
         {
             player.TakeDamage();
-            Debug.Log("Attacked");
         }
     }
 }

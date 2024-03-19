@@ -9,9 +9,8 @@ public class EnemyStateMachine : MonoBehaviour
 
     private EnemyMovement _movement;
 
-    [Header("AI Triggers")]
-    [SerializeField] private EnemyTriggerPlayer _detectionTrigger;
-    [SerializeField] private EnemyTriggerPlayer _attackTrigger;
+    [Header("Distance to player module")]
+    [SerializeField] private EnemyDistanceToPlayer _enemyDistanceToPlayer;
 
     [Space, Header("Attack module")]
     [SerializeField] private MeleeEnemyAttack _enemyAttack;
@@ -82,20 +81,16 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void Subscribe()
     {
-        _attackTrigger.OnDetectedPlayer += SetBehaviourAttack;
-        _attackTrigger.OnUndetectedPlayer += SetBehaviourChasing;
-
-        _detectionTrigger.OnDetectedPlayer += SetBehaviourChasing;
-        _detectionTrigger.OnUndetectedPlayer += SetBehaviourIdle;
+        _enemyDistanceToPlayer.OnIdleDistance += SetBehaviourIdle;
+        _enemyDistanceToPlayer.OnChaseDistance += SetBehaviourChasing;
+        _enemyDistanceToPlayer.OnAttackDistance += SetBehaviourAttack;
     }
 
     private void Unsubcribe()
     {
-        _attackTrigger.OnDetectedPlayer -= SetBehaviourAttack;
-        _attackTrigger.OnUndetectedPlayer -= SetBehaviourChasing;
-
-        _detectionTrigger.OnDetectedPlayer -= SetBehaviourChasing;
-        _detectionTrigger.OnUndetectedPlayer -= SetBehaviourIdle;
+        _enemyDistanceToPlayer.OnIdleDistance -= SetBehaviourIdle;
+        _enemyDistanceToPlayer.OnChaseDistance -= SetBehaviourChasing;
+        _enemyDistanceToPlayer.OnAttackDistance -= SetBehaviourAttack;
     }
 
     private void OnEnable()

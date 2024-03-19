@@ -431,6 +431,9 @@ MonoBehaviour:
   directionPointer: {fileID: 6804582595446850813}
   jumpDuration: 0.5
   jumpStepMultiplier: 5
+  jumpCooldown: 0.15
+  jumpsCapacity: 3
+  jumpReloadTime: 3
 --- !u!50 &2118269337751937943
 Rigidbody2D:
   serializedVersion: 4

@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Diagnostics.Contracts;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour, IEnemyMovement
@@ -20,9 +18,9 @@ public class EnemyMovement : MonoBehaviour, IEnemyMovement
 
     private Vector3 _targetPosition;
 
-    private void Start()
+    private void Awake()
     {
-        _transform = GetComponent<Transform>();
+        _transform = transform;
     }
 
     public void Move()
@@ -58,5 +56,10 @@ public class EnemyMovement : MonoBehaviour, IEnemyMovement
     public void StartPatrol()
     {
         StartCoroutine(UpdatingTargetPosition());
+    }
+
+    public void StopPatrol()
+    {
+        StopAllCoroutines();
     }
 }

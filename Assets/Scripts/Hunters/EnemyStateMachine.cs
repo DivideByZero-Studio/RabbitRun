@@ -8,12 +8,14 @@ public class EnemyStateMachine : MonoBehaviour
     private IState _currentBehaviour;
 
     private EnemyMovement _movement;
+    private IAttackable _attacker;
 
     [SerializeField] private EnemyTriggerPlayer _detectionTrigger;
     [SerializeField] private EnemyTriggerPlayer _attackTrigger;
 
     private void Awake()
     {
+        _attacker = GetComponent<IAttackable>();
         _movement = GetComponent<EnemyMovement>();
     }
 
@@ -29,7 +31,7 @@ public class EnemyStateMachine : MonoBehaviour
         _behavioursMap = new Dictionary<Type, IState>();
         _behavioursMap[typeof(EnemyBehaviourIdle)] = new EnemyBehaviourIdle(_movement);
         _behavioursMap[typeof(EnemyBehaviourChasing)] = new EnemyBehaviourChasing(_movement);
-        _behavioursMap[typeof(EnemyBehaviourAttack)] = new EnemyBehaviourAttack();
+        _behavioursMap[typeof(EnemyBehaviourAttack)] = new EnemyBehaviourAttack(_attacker);
     }
 
     private void SetBehaviour(IState newBehaviour)

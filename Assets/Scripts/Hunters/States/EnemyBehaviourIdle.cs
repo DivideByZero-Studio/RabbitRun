@@ -15,7 +15,7 @@ public class EnemyBehaviourIdle : IState
 
     public void Exit()
     {
-        _movement.StopCoroutine(_movement.UpdatingTargetPosition());
+        _movement.StopPatrol();
     }
 
     public void Update()

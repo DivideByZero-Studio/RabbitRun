@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 7273993771415966239, guid: 572221defe113c547b18574c51ed6460, type: 3}
-  _cooldownBTWAttack: 3
+  _cooldownBTWAttack: 2
   _bulletSpawnDot: {fileID: 4231201051249318385}
 --- !u!1 &2671979524694298115
 GameObject:
@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 9170179400493574044}
   - component: {fileID: 5217455007262939868}
   - component: {fileID: 8427715405833023815}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RangeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

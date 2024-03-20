@@ -12,10 +12,6 @@ public class EnemyLookingPlayer : MonoBehaviour
     private void Awake()
     {
         _transform = transform;
-    }
-
-    private void Start()
-    {
         _directionSpriteRenderer.enabled = false;
     }
 

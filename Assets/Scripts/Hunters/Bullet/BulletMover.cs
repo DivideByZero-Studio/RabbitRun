@@ -15,6 +15,6 @@ public class BulletMover : MonoBehaviour
 
     private void Update()
     {
-        _transform.Translate(_transform.right * _bulletSpeed * Time.deltaTime);
+        _transform.Translate(Vector3.right * _bulletSpeed * Time.deltaTime);
     }
 }

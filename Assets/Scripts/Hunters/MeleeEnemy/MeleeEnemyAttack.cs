@@ -55,6 +55,7 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
     {
         while (true)
         {
+            yield return new WaitForSeconds(_cooldownBTWAttacks - 0.2f);
             _jumpProgress = 0f;
             _prepared = true;
             _jumpPosition = _enemyTransform.position;
@@ -64,7 +65,6 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
             yield return new WaitForSeconds(0.2f);
             _attackZone.enabled = false;
             _prepared = false;
-            yield return new WaitForSeconds(_cooldownBTWAttacks - 0.2f);
         }
     }
 

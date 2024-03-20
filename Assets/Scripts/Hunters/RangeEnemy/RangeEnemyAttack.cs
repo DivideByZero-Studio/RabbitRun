@@ -57,8 +57,8 @@ public class RangeEnemyAttack : MonoBehaviour, IAttackable
     {
         while (true)
         {
-            Attack();
             yield return new WaitForSeconds(_cooldownBTWAttack);
+            Attack();
         }
     }
 }

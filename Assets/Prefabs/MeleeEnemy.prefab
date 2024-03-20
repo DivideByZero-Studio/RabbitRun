@@ -128,7 +128,7 @@ MonoBehaviour:
   _player: {fileID: 0}
   _enemyTransform: {fileID: 7198406761521760412}
   _attackTime: 1
-  _cooldownBTWAttacks: 5
+  _cooldownBTWAttacks: 3
 --- !u!58 &8222537966488118384
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 9170179400493574044}
   - component: {fileID: 5217455007262939868}
   - component: {fileID: 8427715405833023815}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MeleeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -22,7 +22,9 @@ public class PlayerMovement : MonoBehaviour
     public event Action Jumped;
     public event Action Landed;
 
-    public event Action<float> JumpBeganReload;
+    public event Action JumpReloadStarted;
+    public event Action<float> JumpReloadUpdate;
+    public event Action JumpReloadDone;
     
     private void Awake()
     {
@@ -46,11 +48,12 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator JumpRoutine()
     {
+        JumpReloadStarted?.Invoke();
         Jumped?.Invoke();
-        
-        _canJump = false;
+
         _jumpsLeft--;
-        
+        _canJump = false;
+
         playerVisuals.SetRotation(directionPointer.transform.rotation);
         _jumpDirection = directionPointer.transform.right;
 
@@ -63,15 +66,12 @@ public class PlayerMovement : MonoBehaviour
         }
         
         Landed?.Invoke();
-        
-        _canJump = true;
 
         StartCoroutine(CooldownRoutine());
     }
 
     private IEnumerator CooldownRoutine()
     {
-        _canJump = false;
         yield return new WaitForSeconds(jumpCooldown);
         _canJump = true;
     }
@@ -79,23 +79,22 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator ReloadJump()
     {
         _isReloading = true;
-        
-        JumpBeganReload?.Invoke(jumpReloadTime);
 
-        yield return new WaitForSeconds(jumpReloadTime);
+        float time = jumpReloadTime;
+        float step = 1 / time;
+        float progress = 0;
+        
+        while (time > 0)
+        {
+            progress += step * Time.deltaTime;
+            JumpReloadUpdate?.Invoke(progress);
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        JumpReloadDone?.Invoke();
         _jumpsLeft += 1;
 
         _isReloading = false;
-    }
-    
-    private void OnCollisionEnter(Collision other)
-    {
-        if (TryGetComponent(out Obstacle obstacle))
-        {
-            var normal = other.GetContact(0).normal;
-            var reflectDirection = Vector2.Reflect(_jumpDirection, normal);
-            _jumpDirection = reflectDirection;
-        }
     }
 
     private void OnEnable()

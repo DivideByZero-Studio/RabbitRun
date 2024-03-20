@@ -1,4 +1,4 @@
-using System.Globalization;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -16,9 +16,8 @@ public class JumpIndicator : MonoBehaviour
         text.text = "0";
     }
 
-    public void SetReloadProgress(float progress)
+    public void SetProgress(float progress)
     {
-        progress = Mathf.Clamp01(progress);
         text.text = $"{progress:#.##}";
     }
 }

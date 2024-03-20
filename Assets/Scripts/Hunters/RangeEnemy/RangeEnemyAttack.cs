@@ -12,8 +12,6 @@ public class RangeEnemyAttack : MonoBehaviour, IAttackable
     [SerializeField] private Transform _bulletSpawnDot;
     private Coroutine _coroutine;
 
-    private Vector3 _targetPosition;
-
     private EnemyLookingPlayer _enemyLookingPlayer;
 
     private void Awake()
@@ -46,11 +44,6 @@ public class RangeEnemyAttack : MonoBehaviour, IAttackable
     private void Attack()
     {
         Instantiate(_bulletPrefab, _bulletSpawnDot.position, transform.rotation);
-    }
-
-    private void GetTargetRotation()
-    {
-
     }
 
     private IEnumerator Attacking()

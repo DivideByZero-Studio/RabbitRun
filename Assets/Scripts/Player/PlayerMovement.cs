@@ -22,7 +22,8 @@ public class PlayerMovement : MonoBehaviour
     public event Action Jumped;
     public event Action Landed;
 
-
+    public event Action<float> JumpBeganReload;
+    
     private void Awake()
     {
         _jumpsLeft = jumpsCapacity;
@@ -78,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator ReloadJump()
     {
         _isReloading = true;
+        
+        JumpBeganReload?.Invoke(jumpReloadTime);
 
         yield return new WaitForSeconds(jumpReloadTime);
         _jumpsLeft += 1;

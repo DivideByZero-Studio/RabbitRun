@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour
@@ -13,10 +14,13 @@ public class EnemyStateMachine : MonoBehaviour
     [SerializeField] private EnemyDistanceToPlayer _enemyDistanceToPlayer;
 
     [Space, Header("Attack module")]
-    [SerializeField] private MeleeEnemyAttack _enemyAttack;
+    [SerializeField] private GameObject _enemyAttack;
+    private IAttackable _attacker;
 
     private void Awake()
     {
+        _attacker = _enemyAttack.GetComponent<IAttackable>();
+        Debug.Log(nameof(_attacker));
         _movement = GetComponent<EnemyMovement>();
     }
 
@@ -32,7 +36,7 @@ public class EnemyStateMachine : MonoBehaviour
         _behavioursMap = new Dictionary<Type, IState>();
         _behavioursMap[typeof(EnemyBehaviourIdle)] = new EnemyBehaviourIdle(_movement);
         _behavioursMap[typeof(EnemyBehaviourChasing)] = new EnemyBehaviourChasing(_movement);
-        _behavioursMap[typeof(EnemyBehaviourAttack)] = new EnemyBehaviourAttack(_enemyAttack);
+        _behavioursMap[typeof(EnemyBehaviourAttack)] = new EnemyBehaviourAttack(_attacker);
     }
 
     private void SetBehaviour(IState newBehaviour)

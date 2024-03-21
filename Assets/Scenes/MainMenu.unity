@@ -657,8 +657,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicSource: {fileID: 1656480628}
   _soundFXSource: {fileID: 1586739076}
-  _minPitch: 0
-  _maxPitch: 0
+  _minPitch: 0.9
+  _maxPitch: 1.3
 --- !u!4 &792174278
 Transform:
   m_ObjectHideFlags: 0

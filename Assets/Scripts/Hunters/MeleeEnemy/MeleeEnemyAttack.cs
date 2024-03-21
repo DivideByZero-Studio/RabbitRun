@@ -46,7 +46,7 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
 
     public void StopAttack()
     {
-        StopCoroutine(_coroutine);
+        StopAllCoroutines();
     }
 
     private void GetTargetPosition()

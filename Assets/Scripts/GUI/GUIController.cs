@@ -5,14 +5,33 @@ public class GUIController : MonoBehaviour
     [SerializeField] private PlayerMovement player;
 
     [SerializeField] private JumpsView jumpsView;
+
+    private int currentJumpIndex = 2;
     
     private void Start()
     {
-        player.JumpBeganReload += UpdateJumpView;
+        player.JumpReloadStarted += StartedJumpView;
+        player.JumpReloadUpdate += UpdateJumpView;
+        player.JumpReloadDone += DoneJumpView;
     }
 
-    private void UpdateJumpView(float reloadTime)
+    private void StartedJumpView()
     {
-        jumpsView.StartReloadView(reloadTime);
+        currentJumpIndex--;
+        if (currentJumpIndex < 1)
+        {
+            jumpsView.SetReloadCleared(currentJumpIndex + 2);
+        }
+    }
+
+    private void UpdateJumpView(float progress)
+    {
+        jumpsView.UpdateReloadView(currentJumpIndex+1, progress);
+    }
+
+    private void DoneJumpView()
+    {
+        currentJumpIndex++;
+        jumpsView.SetReloadFilled(currentJumpIndex);
     }
 }

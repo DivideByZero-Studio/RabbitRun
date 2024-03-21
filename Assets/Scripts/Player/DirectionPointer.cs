@@ -3,6 +3,7 @@ using UnityEngine;
 public class DirectionPointer : MonoBehaviour
 {
     [SerializeField] private PlayerMovement player;
+    [SerializeField] private DirectionPointerVisuals pointerVisuals;
     
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float rotationAngle;
@@ -14,6 +15,7 @@ public class DirectionPointer : MonoBehaviour
 
     private void Start()
     {
+        _difAngle = transform.rotation.eulerAngles.z;
         player.Jumped += StopRotation;
         player.Landed += ContinueRotation;
     }
@@ -63,11 +65,13 @@ public class DirectionPointer : MonoBehaviour
     private void StopRotation()
     {
         SetBoundsForRotation();
+        pointerVisuals.MakeNotAvailable();
         _canRotate = false;
     }
     
     private void ContinueRotation()
     {
+        pointerVisuals.MakeAvailable();
         _rotationDirection *= -1;
         _canRotate = true;
     }

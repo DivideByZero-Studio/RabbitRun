@@ -5,7 +5,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public event Action Dead;
     [SerializeField] private int _maxHealth;
-
+    [SerializeField] private AudioClip _deathSFX;
     public int Health => _health;
 
     private int _health;
@@ -40,5 +40,10 @@ public class PlayerHealth : MonoBehaviour
     private void OnDisable()
     {
         Dead -= OnDead;
+    }
+
+    private void PlayDeathSFX()
+    {
+        AudioManager.Instance.PlaySFX(_deathSFX);
     }
 }

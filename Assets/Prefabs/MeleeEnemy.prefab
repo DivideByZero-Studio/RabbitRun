@@ -129,6 +129,9 @@ MonoBehaviour:
   _enemyTransform: {fileID: 7198406761521760412}
   _attackTime: 1
   _cooldownBTWAttacks: 3
+  _attackSFXs:
+  - {fileID: 8300000, guid: e5e6335f2588d9b41b4bdb86a2be0dbb, type: 3}
+  - {fileID: 8300000, guid: 1a9e68f9fc8331a458d9c550eca0c6b3, type: 3}
 --- !u!58 &8222537966488118384
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -399,6 +402,7 @@ MonoBehaviour:
   _patrolLength: 1
   _patrolSpeed: 2
   _patrolTimer: 4
+  _stepSFX: {fileID: 8300000, guid: cb0134fccbe875b4e85fede86e0f8dee, type: 3}
 --- !u!50 &9170179400493574044
 Rigidbody2D:
   serializedVersion: 4

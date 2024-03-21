@@ -14,9 +14,14 @@ public class EnemyMovement : MonoBehaviour, IEnemyMovement
     [SerializeField] private float _patrolSpeed;
     [SerializeField] private float _patrolTimer;
 
+    [Space, Header("SFXs")]
+    [SerializeField] private AudioClip _stepSFX;
+
     private Transform _transform;
 
     private Vector3 _targetPosition;
+
+    private const float _timeToStep = 0.5f;
 
     private void Awake()
     {
@@ -26,6 +31,16 @@ public class EnemyMovement : MonoBehaviour, IEnemyMovement
     public void Move()
     {
 
+    }
+
+    public void StartMove()
+    {
+        StartCoroutine(MakeStepsSFX());
+    }
+
+    public void StopMove()
+    {
+        StopAllCoroutines();
     }
 
     public void Chase()
@@ -61,5 +76,16 @@ public class EnemyMovement : MonoBehaviour, IEnemyMovement
     public void StopPatrol()
     {
         StopAllCoroutines();
+    }
+
+    private IEnumerator MakeStepsSFX()
+    {
+        PlayRandomPitchedStepSFX();
+        yield return new WaitForSeconds(_timeToStep);
+    }
+
+    private void PlayRandomPitchedStepSFX()
+    {
+        AudioManager.Instance.PlayRandomPitchedSFX(_stepSFX);
     }
 }

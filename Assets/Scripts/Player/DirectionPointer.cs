@@ -15,6 +15,7 @@ public class DirectionPointer : MonoBehaviour
 
     private void Start()
     {
+        _difAngle = transform.rotation.eulerAngles.z;
         player.Jumped += StopRotation;
         player.Landed += ContinueRotation;
     }

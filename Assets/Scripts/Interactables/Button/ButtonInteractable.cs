@@ -4,10 +4,12 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Interactable))]
 public class ButtonInteractable : MonoBehaviour
 {
+    [SerializeField] private ButtonVisuals visuals;
+    
     private Interactable _interactable;
     public UnityEvent ButtonPressed;
 
-    private bool _isPressed;
+    public bool isPressed { get; private set; }
 
     private void Start()
     {
@@ -15,10 +17,22 @@ public class ButtonInteractable : MonoBehaviour
         _interactable.Interacted += ButtonInteracted;
     }
 
+    public void SetPressed()
+    {
+        isPressed = true;
+        visuals.SetPressedVisuals();
+    }
+    
+    public void SetUnpressed()
+    {
+        isPressed = false;
+        visuals.SetUnpressedVisuals();
+    }
+    
     private void ButtonInteracted()
     {
-        if (_isPressed) return;
-        _isPressed = true;
+        if (isPressed) return;
+        SetPressed();
         
         ButtonPressed?.Invoke();
     }

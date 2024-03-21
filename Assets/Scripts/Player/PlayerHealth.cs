@@ -28,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnDead()
     {
+        SceneLoader.ReloadScene();
         _movement.enabled = false;
     }
 

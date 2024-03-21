@@ -10,12 +10,11 @@ public class EnemyBehaviourChasing : IState
     public void Enter()
     {
         Debug.Log($"Behaviour: {nameof(EnemyBehaviourChasing)}");
-        _movement.StartMove();
     }
 
     public void Exit()
     {
-        _movement.StopMove();
+
     }
 
     public void Update()

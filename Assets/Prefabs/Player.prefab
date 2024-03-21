@@ -441,6 +441,10 @@ MonoBehaviour:
   jumpCooldown: 0.07
   jumpsCapacity: 3
   jumpReloadTime: 3
+  _jumpSFXs:
+  - {fileID: 8300000, guid: fdf90ac14d2f0654f903c07c48c16fcf, type: 3}
+  - {fileID: 8300000, guid: 649d90dc3b5ac384292cb534136dcda7, type: 3}
+  - {fileID: 8300000, guid: 6656e718375aea042ba5c7891de248dc, type: 3}
 --- !u!50 &2118269337751937943
 Rigidbody2D:
   serializedVersion: 4
@@ -516,3 +520,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 1
+  _deathSFX: {fileID: 8300000, guid: a737023d15ef5e346b74998e1594c71e, type: 3}

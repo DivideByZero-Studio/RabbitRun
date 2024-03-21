@@ -144,6 +144,10 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 7273993771415966239, guid: 572221defe113c547b18574c51ed6460, type: 3}
   _cooldownBTWAttack: 2
   _bulletSpawnDot: {fileID: 4231201051249318385}
+  _shotSFXs:
+  - {fileID: 8300000, guid: 522720874ecfde1499deeb27817a8473, type: 3}
+  - {fileID: 8300000, guid: 401d981376f254d4b8af06fc949ecd7e, type: 3}
+  - {fileID: 8300000, guid: 07c2724c5fc50a94290a25390fe77d28, type: 3}
 --- !u!1 &2671979524694298115
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +498,7 @@ MonoBehaviour:
   _patrolLength: 1
   _patrolSpeed: 2
   _patrolTimer: 4
+  _stepSFX: {fileID: 8300000, guid: cb0134fccbe875b4e85fede86e0f8dee, type: 3}
 --- !u!50 &9170179400493574044
 Rigidbody2D:
   serializedVersion: 4

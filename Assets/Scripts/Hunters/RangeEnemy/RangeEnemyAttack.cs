@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RangeEnemyAttack : MonoBehaviour, IAttackable
 {
@@ -10,6 +11,9 @@ public class RangeEnemyAttack : MonoBehaviour, IAttackable
     [Space, Header("Properties")]
     [SerializeField] private float _cooldownBTWAttack;
     [SerializeField] private Transform _bulletSpawnDot;
+
+    [Space, Header("Shot SFX")]
+    [SerializeField] private AudioClip[] _shotSFXs;
     private Coroutine _coroutine;
 
     private EnemyLookingPlayer _enemyLookingPlayer;
@@ -44,6 +48,7 @@ public class RangeEnemyAttack : MonoBehaviour, IAttackable
     private void Attack()
     {
         Instantiate(_bulletPrefab, _bulletSpawnDot.position, transform.rotation);
+        PlayRandomShotSFX();
     }
 
     private IEnumerator Attacking()
@@ -53,5 +58,10 @@ public class RangeEnemyAttack : MonoBehaviour, IAttackable
             yield return new WaitForSeconds(_cooldownBTWAttack);
             Attack();
         }
+    }
+
+    private void PlayRandomShotSFX()
+    {
+        AudioManager.Instance.PlaySFX(_shotSFXs[Random.Range(0, _shotSFXs.Length - 1)]);
     }
 }

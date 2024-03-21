@@ -10,6 +10,9 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
     [Space, SerializeField] private float _attackTime;
     [SerializeField] private float _cooldownBTWAttacks;
 
+    [Space, Header("SFX")]
+    [SerializeField] private AudioClip[] _jumpSFXs;
+
     private CircleCollider2D _attackZone;
 
     private Vector3 _jumpPosition;
@@ -59,6 +62,7 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
             _jumpProgress = 0f;
             _prepared = true;
             _jumpPosition = _enemyTransform.position;
+            PlayRandomSFX();
             GetTargetPosition();
             yield return new WaitForSeconds(_attackTime);
             _attackZone.enabled = true;
@@ -66,6 +70,11 @@ public class MeleeEnemyAttack : MonoBehaviour, IAttackable
             _attackZone.enabled = false;
             _prepared = false;
         }
+    }
+
+    private void PlayRandomSFX()
+    {
+        AudioManager.Instance.PlaySFX(_jumpSFXs[Random.Range(0, _jumpSFXs.Length - 1)]);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

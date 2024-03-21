@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpCooldown;
     [SerializeField] private int jumpsCapacity;
     [SerializeField] private float jumpReloadTime;
+
+    [Space, Header("SFXs")]
+    [SerializeField] private AudioClip[] _jumpSFXs;
+    [SerializeField] private AudioClip _hitObstacleSFX;
+
+
     private bool _canJump = true;
     private bool _isReloading;
     private int _jumpsLeft;
@@ -34,7 +41,8 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         if (_canJump == false || _jumpsLeft <= 0) return;
-        
+
+        PlayRandomJumpSFX();
         StartCoroutine(JumpRoutine());
     }
 
@@ -105,5 +113,15 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         GameInput.Instance.JumpButtonPressed -= Jump;
+    }
+
+    private void PlayRandomJumpSFX()
+    {
+        AudioManager.Instance.PlayRandomPitchedSFX(_jumpSFXs[Random.Range(0, _jumpSFXs.Length - 1)]);
+    }
+
+    private void PlayHitObstacleSFX()
+    {
+        AudioManager.Instance.PlayRandomPitchedSFX(_hitObstacleSFX);
     }
 }

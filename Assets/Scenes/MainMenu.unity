@@ -760,6 +760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicSource: {fileID: 2050198352}
   _soundFXSource: {fileID: 300140249}
+  _minPitch: 0.75
+  _maxPitch: 1.25
 --- !u!4 &1203027053
 Transform:
   m_ObjectHideFlags: 0
@@ -811,7 +813,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 12.516}
   m_AnchorMin: {x: 0.18549883, y: 0.2952225}
   m_AnchorMax: {x: 0.404, y: 0.6432225}
-  m_AnchoredPosition: {x: 11.5, y: 42}
+  m_AnchoredPosition: {x: 11.500061, y: 42}
   m_SizeDelta: {x: -43, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1291792058
